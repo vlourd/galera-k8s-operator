@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"sync"
-	
+
 	"github.com/vlourd/galera-k8s-operator/internal/entities"
 	clusterv1 "github.com/vlourd/galera-k8s-operator/internal/entities/cluster/betav1"
 	nodev1 "github.com/vlourd/galera-k8s-operator/internal/entities/node/betav1"

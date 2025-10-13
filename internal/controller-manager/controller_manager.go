@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"go.uber.org/zap"
-	
+
 	"github.com/vlourd/galera-k8s-operator/internal/entities"
 	inMemoryStorage "github.com/vlourd/galera-k8s-operator/internal/in-memory-storage"
 )

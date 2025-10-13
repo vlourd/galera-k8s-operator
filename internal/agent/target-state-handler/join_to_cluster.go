@@ -2,7 +2,7 @@ package target_state_handler
 
 import (
 	"context"
-	
+
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
 

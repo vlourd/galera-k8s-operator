@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"go.uber.org/zap"
-	
+
 	"github.com/vlourd/galera-k8s-operator/internal/agent/entities"
 	"github.com/vlourd/galera-k8s-operator/internal/agent/mariadb/manager"
 	"github.com/vlourd/galera-k8s-operator/internal/agent/mariadb/service"

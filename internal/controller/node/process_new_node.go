@@ -3,9 +3,11 @@ package node
 import (
 	"context"
 	"errors"
+
+	"go.uber.org/zap"
+
 	v1 "github.com/vlourd/galera-k8s-operator/internal/entities"
 	nodev1 "github.com/vlourd/galera-k8s-operator/internal/entities/node/betav1"
-	"go.uber.org/zap"
 )
 
 func (c *Controller) processNewNode(ctx context.Context, state nodev1.NodeTargetState) v1.ReconcileResult {

@@ -2,18 +2,20 @@ package node
 
 import (
 	"context"
+
+	"go.uber.org/zap"
+
 	"github.com/vlourd/galera-k8s-operator/internal/entities"
 	nodev1 "github.com/vlourd/galera-k8s-operator/internal/entities/node/betav1"
-	in_memory_storage "github.com/vlourd/galera-k8s-operator/internal/in-memory-storage"
-	"go.uber.org/zap"
+	inMemoryStorage "github.com/vlourd/galera-k8s-operator/internal/in-memory-storage"
 )
 
 type Controller struct {
 	l *zap.Logger
-	s *in_memory_storage.Storage
+	s *inMemoryStorage.Storage
 }
 
-func NewController(l *zap.Logger, s *in_memory_storage.Storage) *Controller {
+func NewController(l *zap.Logger, s *inMemoryStorage.Storage) *Controller {
 	return &Controller{
 		l: l,
 		s: s,

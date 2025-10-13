@@ -2,7 +2,7 @@ package betav1
 
 import (
 	"encoding/json"
-	
+
 	"github.com/pkg/errors"
 
 	"github.com/vlourd/galera-k8s-operator/internal/entities"

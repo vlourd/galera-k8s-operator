@@ -3,7 +3,9 @@ package cluster
 import (
 	"context"
 	"fmt"
+
 	"github.com/davecgh/go-spew/spew"
+
 	"github.com/vlourd/galera-k8s-operator/internal/entities"
 	clusterv1 "github.com/vlourd/galera-k8s-operator/internal/entities/cluster/betav1"
 	nodev1 "github.com/vlourd/galera-k8s-operator/internal/entities/node/betav1"
