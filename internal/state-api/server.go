@@ -117,7 +117,7 @@ func (s *Server) handleHeartbeat(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if genNode.Name == "" {
-		http.Error(w, fmt.Sprintf("Bad request: node not found"), http.StatusBadRequest)
+		http.Error(w, "node not found", http.StatusNotFound)
 	}
 
 	node := nodev1.NodeTargetState{}
@@ -141,7 +141,7 @@ func (s *Server) handleHeartbeat(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	s.l.Info("Heartbeat received", zap.Any("req", w), zap.String("node", req.Name))
+	s.l.Info("Heartbeat received", zap.Any("heartbeat", req), zap.String("node", req.Name))
 }
 
 func (s *Server) handleTargetState(w http.ResponseWriter, r *http.Request) {
