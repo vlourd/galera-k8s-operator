@@ -83,7 +83,10 @@ func RunMariadb(ctx context.Context, logger *zap.Logger, args ...string) error {
 // Atoi is a helper function that safely converts a string to an integer.
 // Returns 0 if the string cannot be parsed.
 func Atoi(s string) int {
-	var i int
-	fmt.Sscanf(s, "%d", &i)
+	i, err := strconv.Atoi(s)
+	if err != nil {
+		// Consider logging this error for debugging purposes.
+		return 0
+	}
 	return i
 }
