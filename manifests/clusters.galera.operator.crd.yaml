@@ -1,0 +1,71 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: galeraclusters.operator.vlourd
+spec:
+  group: operator.vlourd
+  scope: Namespaced
+  names:
+    kind: GaleraCluster
+    listKind: GaleraClusterList
+    plural: galeraclusters
+    singular: galeracluster
+    shortNames:
+      - gc
+    categories:
+      - all
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      additionalPrinterColumns:
+        - name: Replicas
+          type: integer
+          jsonPath: .spec.replicas
+        - name: Image
+          type: string
+          jsonPath: .spec.image
+        - name: Status
+          type: integer
+          jsonPath: .status.status
+        - name: Age
+          type: date
+          jsonPath: .metadata.creationTimestamp
+      schema:
+        openAPIV3Schema:
+          type: object
+          description: GaleraCluster is the Schema for the galeraclusters API
+          properties:
+            apiVersion:
+              type: string
+              description: API version of this representation of an object.
+            kind:
+              type: string
+              description: REST resource this object represents.
+            metadata:
+              type: object
+            spec:
+              type: object
+              description: GaleraClusterSpec defines the desired state of GaleraCluster
+              properties:
+                replicas:
+                  type: integer
+                  format: int32
+                  description: Number of replicas in the Galera cluster
+                image:
+                  type: string
+                  description: Docker image to use for the Galera cluster
+                status:
+                  type: integer
+                  format: int32
+                  description: Status of Galera Cluster (desired, per spec)
+            status:
+              type: object
+              description: GaleraClusterStatus defines the observed state of GaleraCluster
+              properties:
+                status:
+                  type: integer
+                  format: int32
+                  description: Current status of the Galera cluster
