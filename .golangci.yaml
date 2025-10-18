@@ -1,0 +1,95 @@
+run:
+  timeout: 5m
+  tests: true
+  issues-exit-code: 1
+  allow-parallel-runners: true
+  modules-download-mode: readonly
+
+output:
+  format: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
+  sort-results: true
+
+linters:
+  disable-all: true
+  enable:
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - typecheck
+    - unused
+    - misspell
+    - gocyclo
+    - gofumpt
+    - gosec
+    - revive
+    - unparam
+    - whitespace
+    - nolintlint
+    - durationcheck
+    - prealloc
+    - exportloopref
+    - goconst
+    - nestif
+
+linters-settings:
+  gocyclo:
+    min-complexity: 15
+  gofumpt:
+    extra-rules: true
+  misspell:
+    locale: US
+  revive:
+    severity: warning
+    rules:
+      - name: var-naming
+      - name: blank-imports
+      - name: errorf
+      - name: error-return
+      - name: exported
+      - name: indent-error-flow
+      - name: if-return
+      - name: range
+      - name: receiver-naming
+      - name: time-naming
+  gosec:
+    excludes:
+      - G115   # integer overflow conversion false positives
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+
+issues:
+  exclude-use-default: false
+  # Common noise filters; tune as needed.
+  exclude:
+    - "should have comment or be unexported"       # e.g. for small apps
+    - "G115:"                                      # gosec numeric conversion FPs
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - gosec          # security checks noisy in unit tests
+        - errcheck
+    - path: ".*generated.*|.*mocks?.*|.*mock/.*"
+      linters:
+        - errcheck
+        - revive
+        - staticcheck
+        - ineffassign
+  max-issues-per-linter: 0
+  max-same-issues: 0
+
+# Optional: restrict imports of certain modules (tweak for your project)
+# linters-settings:
+#   depguard:
+#     list-type: blacklist
+#     packages:
+#       - github.com/pkg/errors
+#     packages-with-error-message:
+#       github.com/pkg/errors: "Use stdlib errors or xerrors instead."
+
+service:
+  golangci-lint-version: 1.60.3

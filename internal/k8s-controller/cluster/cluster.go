@@ -35,9 +35,9 @@ func (c *Controller) GetResources(ctx context.Context) ([]entities.GeneralTarget
 	resources := make([]entities.GeneralTargetState, 0)
 
 	apiGroup := schema.GroupVersionResource{
-		Group:    "galera.operator",
+		Group:    "operator.vlourd",
 		Version:  "betav1",
-		Resource: "clusters",
+		Resource: "galeraclusters",
 	}
 
 	k8sResource := c.cli.Resource(apiGroup)
@@ -65,7 +65,7 @@ func (c *Controller) GetResources(ctx context.Context) ([]entities.GeneralTarget
 
 		spew.Dump(k8sCluster)
 
-		c.l.Info("k8s resource marshalled", zap.Any("resource", k8sCluster))
+		c.l.Info("k8s resource marshaled", zap.Any("resource", k8sCluster))
 	}
 
 	return resources, nil

@@ -20,7 +20,7 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	enderCh := make(chan os.Signal)
+	enderCh := make(chan os.Signal, 1)
 	signal.Notify(enderCh, syscall.SIGTERM, syscall.SIGINT)
 
 	logger := initLogger()
